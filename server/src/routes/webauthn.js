@@ -1,0 +1,10 @@
+const express = require('express');
+const { getRegisterOptions, verifyRegistration, getAuthenticateOptions, verifyAuthentication } = require('../controllers/webauthnController');
+const { authenticate } = require('../middleware/auth');
+const router = express.Router();
+router.use(authenticate);
+router.get('/register-options', getRegisterOptions);
+router.post('/register', verifyRegistration);
+router.get('/authenticate-options', getAuthenticateOptions);
+router.post('/authenticate', verifyAuthentication);
+module.exports = router;
